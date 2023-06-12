@@ -4,6 +4,7 @@ const { validateJWT } = require('./token')
 const userMiddleware = require('./user')
 const characterMiddleware = require('./character')
 const stateMiddleware = require('./state')
+const regionMiddleware = require('./region')
 
 module.exports = {
   errorMiddleware,
@@ -11,4 +12,5 @@ module.exports = {
   userMiddleware, 
   characterMiddleware,
   stateMiddleware,
+  regionMiddleware,
 }
