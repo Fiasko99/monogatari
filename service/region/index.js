@@ -11,7 +11,7 @@ async function get({ name }) {
   return region;
 }
 
-async function create(stateName, name) {
+async function create({ stateName, name }) {
   const candidate = await db.Region.findOne({
     where: { name }
   });
