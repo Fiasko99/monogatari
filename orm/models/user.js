@@ -16,10 +16,11 @@ module.exports = (sequelize, DataTypes) => {
     },
   });
 
-  Table.associate = function(models) {
+  Table.associate = function (models) {
     Table.hasMany(models.Character, {
       foreignKey: 'userLogin',
       as: 'characters',
+      onUpdate: 'CASCADE',
       onDelete: 'CASCADE',
     });
   };

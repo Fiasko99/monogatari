@@ -7,10 +7,11 @@ module.exports = (sequelize, DataTypes) => {
     },
   });
 
-  Table.associate = function(models) {
+  Table.associate = function (models) {
     Table.hasMany(models.Region, {
       foreignKey: 'stateName',
       as: 'regions',
+      onUpdate: 'CASCADE',
       onDelete: 'CASCADE',
     });
   };

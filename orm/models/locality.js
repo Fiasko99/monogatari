@@ -11,16 +11,18 @@ module.exports = (sequelize, DataTypes) => {
     },
   });
 
-  Table.associate = function(models) {
+  Table.associate = function (models) {
     Table.belongsTo(models.Region, {
       foreignKey: 'regionName',
       as: 'region',
+      onUpdate: 'CASCADE',
       onDelete: 'CASCADE',
     });
 
     Table.hasMany(models.Location, {
       foreignKey: 'localityName',
       as: 'locations',
+      onUpdate: 'CASCADE',
       onDelete: 'CASCADE',
     });
   };

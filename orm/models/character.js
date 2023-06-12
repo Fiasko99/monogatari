@@ -11,16 +11,18 @@ module.exports = (sequelize, DataTypes) => {
     },
   });
 
-  Table.associate = function(models) {
+  Table.associate = function (models) {
     Table.belongsTo(models.User, {
       foreignKey: 'userLogin',
       as: 'user',
+      onUpdate: 'CASCADE',
       onDelete: 'CASCADE',
     });
 
     Table.hasMany(models.Post, {
       foreignKey: 'characterName',
       as: 'posts',
+      onUpdate: 'CASCADE',
       onDelete: 'CASCADE',
     });
   }
