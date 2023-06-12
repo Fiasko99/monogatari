@@ -21,6 +21,26 @@ async function check({ login, password }) {
   return user;
 }
 
+async function get({ login }) {
+  const user = await db.User.findOne(
+    {
+      where: { login },
+      include: [
+        {
+          model: db.Character,
+          as: "characters"
+        },
+      ]
+    } 
+  );
+  console.log(user);
+  if (!user) {
+    throw ApiError.NotFound();
+  };
+
+  return user;
+}
+
 async function create({ login, password, email }) {
   const candidate = await db.User.findOne({
     where: { login }
@@ -41,5 +61,6 @@ async function create({ login, password, email }) {
 
 module.exports = {
   check,
+  get,
   create,
 }

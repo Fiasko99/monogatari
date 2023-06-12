@@ -12,6 +12,15 @@ async function signin(req, res, next) {
   }
 };
 
+async function get(req, res, next) {
+  try {
+    const user = await userService.get(req.params);
+    res.json(user)
+  } catch (e) {
+    next(e)
+  }
+};
+
 async function signup(req, res, next) {
   try {
     const { login, email } = await userService.create(req.body);
@@ -25,5 +34,7 @@ async function signup(req, res, next) {
 
 
 module.exports = {
-  signin, signup
+  signin,
+  get, 
+  signup,
 };

@@ -44,5 +44,6 @@ function signup(req, _, next) {
   
 
 module.exports = {
-  signin, signup
+  signin,
+  signup,
 };

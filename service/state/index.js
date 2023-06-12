@@ -3,7 +3,25 @@ const { db } = require("../../orm");
 
 async function get({ name }) {
   const state = await db.State.findOne({
-    where: { name }
+    where: { name },
+    include: [
+      {
+        model: db.Region,
+        as: 'regions',
+        include: [
+          {
+            model: db.Locality,
+            as: 'localities',
+            include: [
+              {
+                model: db.Location,
+                as: 'locations'
+              }
+            ]
+          }
+        ]
+      }
+    ]
   });
   if (!state) {
     throw ApiError.NotFound();

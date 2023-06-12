@@ -4,7 +4,13 @@ const ApiError = require('../../exception');
 
 async function get({ name }) {
   const character = await db.Character.findOne({
-    where: { name }
+    where: { name },
+    include: [
+      {
+        model: db.Post,
+        as: 'posts'
+      }
+    ]
   });
   if (!character) {
     throw ApiError.NotFound();
