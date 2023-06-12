@@ -21,7 +21,19 @@ const createCharacters = async (db) => {
   };
 };
 
+const createStates = async (db) => {
+  const data = [
+    { name: 'state1'},
+    { name: 'state2'},
+    { name: 'state3'},
+  ];
+  for (const item of data) {
+    await db.State.create(item);
+  };
+};
+
 module.exports = async (db) => {
   await createUsers(db);
   await createCharacters(db);
+  await createStates(db);
 }
