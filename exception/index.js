@@ -20,6 +20,14 @@ module.exports = class ApiError extends Error {
     return new ApiError(404, 'Не удалось найти')
   }
 
+  static AlreadyExist() {
+    return new ApiError(400, 'Уже существует');
+  }
+
+  static InputError(errors) {
+    return new ApiError(400, 'Ошибка ввода', errors);
+  }
+
   static BadRequest(message, errors) {
     return new ApiError(400, message, errors);
   }

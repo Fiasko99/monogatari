@@ -5,7 +5,7 @@ const router = new Router();
 const { characterMiddleware, validateJWT } = require('../../middleware');
 const { characterController } = require('../../controller');
 
-router.get('/:name', characterController.get)
+router.get('/:name', characterMiddleware.get, characterController.get)
 router.post('/add', validateJWT, characterMiddleware.create, characterController.create)
 router.put('/:name', validateJWT)
 router.delete('/:name', validateJWT)

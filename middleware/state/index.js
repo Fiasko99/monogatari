@@ -1,6 +1,6 @@
 const ApiError = require("../../exception")
 
-const emptyValue = 'Пустое поле'
+const { emptyValue } = require('../constants')
 
 function create(req, _, next) {
   const { name } = req.body;

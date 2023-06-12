@@ -1,12 +1,14 @@
 // @internal
 const errorMiddleware = require('./error')
-const userMiddleware = require('./user')
 const { validateJWT } = require('./token')
+const userMiddleware = require('./user')
 const characterMiddleware = require('./character')
+const stateMiddleware = require('./state')
 
 module.exports = {
   errorMiddleware,
-  userMiddleware, 
   validateJWT,
+  userMiddleware, 
   characterMiddleware,
+  stateMiddleware,
 }

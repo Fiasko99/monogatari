@@ -27,7 +27,7 @@ async function create({ login, password, email }) {
   });
 
   if (candidate) {
-    throw ApiError.BadRequest('Пользователь уже существует');
+    throw ApiError.AlreadyExist();
   };
 
   const salt = parseInt(process.env.SALT);

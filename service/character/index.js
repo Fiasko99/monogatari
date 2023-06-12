@@ -17,7 +17,7 @@ async function create(login, name) {
     where: { name }
   });
   if (candidate) {
-    throw ApiError.BadRequest('Персонаж с таким именем уже существует');
+    throw ApiError.AlreadyExist();
   };
 
   const character = await db.Character.create({ name, userLogin: login })

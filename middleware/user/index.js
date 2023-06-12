@@ -17,7 +17,7 @@ async function signin(req, _, next) {
   !login && errors.push({ input: "login", message: emptyValue })
   !password && errors.push({ input: "password", message: emptyValue })
   if (errors.length > 0){
-    throw ApiError.BadRequest("Ошибка ввода", errors)
+    throw ApiError.InputError(errors);
   }
 
   next();
@@ -31,12 +31,12 @@ function signup(req, _, next) {
   !password && errors.push({ input: "password", message: emptyValue })
   !email && errors.push({ input: "email", message: emptyValue })
   if (errors.length > 0){
-    throw ApiError.BadRequest("Ошибка ввода", errors)
+    throw ApiError.InputError(errors);
   }
 
   !validateMail(email) && errors.push({ input: 'email', message: 'Неверный формат почты' })
   if (errors.length > 0){
-    throw ApiError.BadRequest("Ошибка ввода", errors)
+    throw ApiError.InputError(errors);
   }
 
   next();
