@@ -54,10 +54,22 @@ const createLocalities = async (db) => {
   };
 };
 
+const createLocation = async (db) => {
+  const data = [
+    { name: 'localion1', localityName: 'locality1'},
+    { name: 'localion2', localityName: 'locality1'},
+    { name: 'localion3', localityName: 'locality1'},
+  ];
+  for (const item of data) {
+    await db.Location.create(item);
+  };
+};
+
 module.exports = async (db) => {
   await createUsers(db);
   await createCharacters(db);
   await createStates(db);
   await createRegions(db);
   await createLocalities(db);
+  await createLocation(db);
 }
