@@ -12,7 +12,7 @@ async function get({ name }) {
   return character;
 }
 
-async function create(login, name) {
+async function create(userLogin, name) {
   const candidate = await db.Character.findOne({
     where: { name }
   });
@@ -20,7 +20,7 @@ async function create(login, name) {
     throw ApiError.AlreadyExist();
   };
 
-  const character = await db.Character.create({ name, userLogin: login })
+  const character = await db.Character.create({ name, userLogin })
 
   return character;
 }
