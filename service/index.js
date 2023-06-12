@@ -4,6 +4,7 @@ const characterService = require('./character')
 const stateService = require('./state')
 const regionService = require('./region')
 const localityService = require('./locality')
+const locationService = require('./location')
 
 module.exports = {
   tokenService, 
@@ -12,4 +13,5 @@ module.exports = {
   stateService,
   regionService,
   localityService,
+  locationService,
 }
