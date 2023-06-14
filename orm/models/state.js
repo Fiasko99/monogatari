@@ -8,9 +8,9 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   Table.associate = function (models) {
-    Table.hasMany(models.Region, {
+    Table.hasMany(models.Locality, {
       foreignKey: 'stateName',
-      as: 'regions',
+      as: 'localities',
       onUpdate: 'CASCADE',
       onDelete: 'CASCADE',
     });

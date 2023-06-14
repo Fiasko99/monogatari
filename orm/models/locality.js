@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
   const Table = sequelize.define('Locality', {
-    regionName: {
+    stateName: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -12,9 +12,9 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   Table.associate = function (models) {
-    Table.belongsTo(models.Region, {
-      foreignKey: 'regionName',
-      as: 'region',
+    Table.belongsTo(models.State, {
+      foreignKey: 'stateName',
+      as: 'state',
       onUpdate: 'CASCADE',
       onDelete: 'CASCADE',
     });

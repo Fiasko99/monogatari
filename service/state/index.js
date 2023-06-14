@@ -6,18 +6,12 @@ async function get({ name }) {
     where: { name },
     include: [
       {
-        model: db.Region,
-        as: 'regions',
+        model: db.Locality,
+        as: 'localities',
         include: [
           {
-            model: db.Locality,
-            as: 'localities',
-            include: [
-              {
-                model: db.Location,
-                as: 'locations'
-              }
-            ]
+            model: db.Location,
+            as: 'locations',
           }
         ]
       }
@@ -27,6 +21,27 @@ async function get({ name }) {
     throw ApiError.NotFound();
   };
   return state;
+}
+
+async function getAll() {
+  const states = await db.State.findAll({
+    include: [
+      {
+        model: db.Locality,
+        as: 'localities',
+        include: [
+          {
+            model: db.Location,
+            as: 'locations',
+          }
+        ]
+      }
+    ]
+  });
+  if (!states) {
+    throw ApiError.NotFound();
+  };
+  return states;
 }
 
 async function create({ name }) {
@@ -41,6 +56,7 @@ async function create({ name }) {
 }
 
 module.exports = {
-  get, 
+  get,
   create,
+  getAll,
 }

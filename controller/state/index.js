@@ -10,6 +10,15 @@ async function get(req, res, next) {
   }  
 }
 
+async function getAll(req, res, next) {
+  try {
+    const states = await stateService.getAll(req.params)
+    res.json(states); 
+  } catch (e) {
+    next(e)
+  }  
+}
+
 async function create(req, res, next) {
   try {
     const state = await stateService.create(req.body)
@@ -22,5 +31,6 @@ async function create(req, res, next) {
 module.exports = {
   get,
   create,
+  getAll,
 }
 

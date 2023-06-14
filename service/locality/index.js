@@ -11,14 +11,14 @@ async function get({ name }) {
   return locality;
 }
 
-async function create({ regionName, name }) {
+async function create({ stateName, name }) {
   const candidate = await db.Locality.findOne({
     where: { name }
   });
   if (candidate) {
     throw ApiError.AlreadyExist();
   };
-  const locality = await db.Locality.create({ name, regionName })
+  const locality = await db.Locality.create({ name, stateName })
   return locality;
 }
 
