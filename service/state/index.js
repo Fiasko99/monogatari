@@ -36,7 +36,24 @@ async function getAll() {
           }
         ]
       }
-    ]
+    ],
+    order: [
+      [
+        'name',
+        'DESC'
+      ],
+      [
+        {model: db.Locality, as: 'localities'},
+        'name',
+        'DESC'
+      ],
+      [
+        {model: db.Locality, as: 'localities'},
+        {model: db.Location, as: 'locations'},
+        'name',
+        'DESC'
+      ],
+    ],
   });
   if (!states) {
     throw ApiError.NotFound();
