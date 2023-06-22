@@ -6,6 +6,7 @@ const characterMiddleware = require('./character')
 const stateMiddleware = require('./state')
 const localityMiddleware = require('./locality')
 const locationMiddleware = require('./location')
+const postMiddleware = require('./post')
 
 module.exports = {
   errorMiddleware,
@@ -15,4 +16,5 @@ module.exports = {
   stateMiddleware,
   localityMiddleware,
   locationMiddleware,
+  postMiddleware,
 }

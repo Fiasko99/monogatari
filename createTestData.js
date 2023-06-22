@@ -4,9 +4,9 @@ const randomInteger = (max) => {
   let rand = 0.5 + Math.random() * max;
   return Math.round(rand);
 }
-const COUNTSTATES = 25
+const COUNTSTATES = 15
 const COUNTLOCALITIES = 50
-const COUNTLOCATIONS = 100
+const COUNTLOCATIONS = 200
 const COUNTUSERS = 25
 const COUNTCHARACTERS = 50
 const COUNTPOSTS = 500

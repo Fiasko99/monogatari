@@ -4,6 +4,7 @@ const characterController = require('./character');
 const stateController = require('./state');
 const localityController = require('./locality');
 const locationController = require('./location');
+const postController = require('./post');
 
 module.exports = {
   userController,
@@ -11,4 +12,5 @@ module.exports = {
   stateController,
   localityController,
   locationController,
+  postController,
 }
