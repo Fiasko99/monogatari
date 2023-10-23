@@ -5,6 +5,9 @@ const router = new Router();
 const { characterMiddleware, validateJWT } = require('../../middleware');
 const { characterController } = require('../../controller');
 
+router.get('/all/me', validateJWT, characterController.getAllByMe)
+router.get('/all/:login')
+router.get('/activate/:name', validateJWT, characterController.activate)
 router.get('/:name', characterController.get)
 router.post('/add', validateJWT, characterMiddleware.create, characterController.create)
 router.put('/:name', validateJWT)

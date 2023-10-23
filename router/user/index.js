@@ -7,6 +7,7 @@ const { userController } = require('../../controller');
 
 router.post('/signin', userMiddleware.signin, userController.signin);
 router.post('/signup', userMiddleware.signup, userController.signup);
+router.get('/me', validateJWT, userController.getMe);
 router.get('/:login', userController.get);
 router.get('/logout', validateJWT);
 router.get('/refresh');
