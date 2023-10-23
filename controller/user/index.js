@@ -21,6 +21,15 @@ async function get(req, res, next) {
   }
 };
 
+async function getMe(req, res, next) {
+  try {
+    const user = await userService.get(req.user);
+    res.json(user)
+  } catch (e) {
+    next(e)
+  }
+};
+
 async function signup(req, res, next) {
   try {
     const { login, email } = await userService.create(req.body);
@@ -35,6 +44,7 @@ async function signup(req, res, next) {
 
 module.exports = {
   signin,
-  get, 
+  get,
+  getMe,
   signup,
 };
