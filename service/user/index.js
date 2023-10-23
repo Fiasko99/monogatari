@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 // @internal
 const { db } = require('../../orm');
 const ApiError = require('../../exception');
+const { attributes } = require('./constants')
 
 async function check({ login, password }) {
   const user = await db.User.findOne({
@@ -22,18 +23,23 @@ async function check({ login, password }) {
 }
 
 async function get({ login }) {
-  const user = await db.User.findOne(
-    {
-      where: { login },
-      include: [
-        {
-          model: db.Character,
-          as: "characters"
-        },
-      ]
-    } 
-  );
-  console.log(user);
+  const user = await db.User.findOne({
+    where: { login },
+    attributes,
+    include: [
+      {
+        model: db.Character,
+        as: 'characters',
+      }
+    ],
+    order: [
+      [
+        {model: db.Character, as: 'characters'},
+        'name',
+        'DESC'
+      ],
+    ],
+  });
   if (!user) {
     throw ApiError.NotFound();
   };
