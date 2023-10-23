@@ -9,6 +9,11 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    active: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+      allowNull: false,
+    },
   });
 
   Table.associate = function (models) {
@@ -24,6 +29,20 @@ module.exports = (sequelize, DataTypes) => {
       as: 'posts',
       onUpdate: 'CASCADE',
       onDelete: 'CASCADE',
+    });
+  }
+
+  Table.addHooks = function(models) {
+    Table.beforeUpdate(async (data, options) => {
+      const { userLogin, active } = data;
+      const { fields } = options;
+      if (fields.includes('active') && active) {
+        const character = await models.Character.findOne({
+          where: { userLogin, active }
+        });
+        character && character.update({ active: false });
+      }
+      return Promise.resolve();
     });
   }
 
