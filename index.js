@@ -24,6 +24,7 @@ app.use(cors({
 }));
 
 app.use('/api', router);
+app.use('/cdn/assets', express.static('assets'));
 app.use(errorMiddleware.handler)
 
 orm.sync({alter: false, force: true}).then(async () => {
