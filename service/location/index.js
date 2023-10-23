@@ -7,9 +7,16 @@ async function get({ name }) {
     include: [
       {
         model: db.Post,
-        as: 'posts'
+        as: 'posts',
       }
-    ]
+    ],
+    order: [
+      [
+        {model: db.Post, as: 'posts'}, 
+        'id', 
+        'DESC'
+      ]
+    ],
   });
   if (!location) {
     throw ApiError.NotFound();
